@@ -1,0 +1,130 @@
+<head>
+    <%- include('./default/head'); -%>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<header>
+    <%- include('./default/profileHeader'); -%>
+</header>
+<main>
+    <div class="row py-5 px-4">
+        <div class="mx-auto">
+            <div class="bg-white shadow rounded overflow-hidden">
+                <div class="px-4 pt-0 pb-4 bg-danger">
+                    <div class="media align-items-end profile-header">
+                        <div class="profile mr-3 mt-3"><img src="<%= pp %>" alt="..." width="250" class="rounded mb-2 img-thumbnail"><a href="/users/editProfile" class="btn btn-dark btn-sm btn-block">Edit profile</a></div>
+                        <div class="media-body text-white text-center mb-auto mt-3">
+                            <h4 class="mt-0 mb-0 cap"><% if (typeof name != 'undefined') {%> <%= name %> <% } %></h4>
+                            <p class="small mb-4" id="location"> <i class="fa fa-map-marker mr-2"></i><%= province %>, <%= city %></p>
+                        </div>
+                        <ul class="list-inline mb-0 bg-light p-4 d-flex justify-content-end rounded bg-transparent border border-dark">
+                            <li class="list-inline-item">
+                                <button class="bg-danger border-danger" data-toggle="modal" data-target="#likes"><h5 class="font-weight-bold mb-0 d-block"><%= likes %></h5><small class="text-muted"> <i class="fa fa-heart mr-1"></i>Likes</small></button>
+                            </li>
+                            <li class="list-inline-item">
+                                <button class="bg-danger border-danger" data-toggle="modal" data-target="#views"><h5 class="font-weight-bold mb-0 d-block"><%= views %></h5><small class="text-muted"> <i class="fa fa-eye mr-1"></i>Views</small></button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="container mx-auto">
+                    <br><h4 class="text-danger">Your Info</h4>
+                    <hr class="mt-2 mb-3">
+                    <p class="font-weight-light"><span class="text-danger">Gender</span> : <%= gender%></p>
+                    <p class="font-weight-light"><span class="text-danger">Sexual Preference</span> : <%= sexPref%></p>
+                    <p class="font-weight-light"><span class="text-danger">Interests</span> : #<%= interests.first%> #<%= interests.second%> #<%= interests.third%> #<%= interests.fourth%> #<%= interests.fifth%></p>
+                    <p class="font-weight-light"><span class="text-danger">Bio</span> : <%= bio%></p>
+                    <p class="font-weight-light"><span class="text-danger">Popularity Score</span> : </p>
+                    <h5 class="font-weight-light text-center text-lg-left mt-4 mb-0">Image Gallery</h5>
+                    <hr class="mt-2 mb-5">
+                    <%- include ('./partials/messages'); -%>
+                    <div class="row text-center text-lg-left">
+                        <div class="col-lg-3 col-md-4 col-6">
+                            <form action="/dashboard" method="post" enctype="multipart/form-data">
+                            <a href="<%= image1 %>" class="d-block mb-4 h-100">
+                                <img class="img-fluid img-thumbnail" src="<%= image1 %>" alt="" style="height: 100%;width: 150%">
+                            </a>
+                            <input type="file" id="image1" name="image1" style="display: none;">
+                            <input type="button" value="Change" onclick="document.getElementById('image1').click();" />
+                            <button type="submit">save</button>
+                            </form>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-6">
+                            <form action="/dashboard" method="post" enctype="multipart/form-data">
+                            <a href="<%= image2 %>" class="d-block mb-4 h-100">
+                                <img class="img-fluid img-thumbnail" src="<%= image2 %>" alt="" style="height: 100%; width: 150%">
+                            </a>
+                            <input type="file" id="image2" name="image2" style="display: none;">
+                            <input type="button" value="Change" onclick="document.getElementById('image2').click();" />
+                            <button type="submit">save</button>
+                            </form>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-6">
+                            <form action="/dashboard" method="POST" enctype="multipart/form-data">
+                            <a href="<%= image3 %>" class="d-block mb-4 h-100">
+                                <img class="img-fluid img-thumbnail" src="<%= image3 %>" alt="" style="height: 100%; width: 150%">
+                            </a>
+                            <input type="file" id="image3" name="image3" style="display: none;">
+                            <input type="button" value="Change" onclick="document.getElementById('image3').click();" />
+                            <button type="submit">save</button>
+                            </form>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-6">
+                            <form action="/dashboard" method="POST" enctype="multipart/form-data">
+                            <a href="<%= image4 %>" class="d-block mb-4 h-100">
+                                <img class="img-fluid img-thumbnail" src="<%= image4 %>" alt="" style="height: 100%; width: 150%">
+                            </a>
+                            <input type="file" id="image4" name="image4" style="display: none;">
+                            <input type="button" value="Change" onclick="document.getElementById('image4').click();" />
+                            <button type="submit">save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="modal fade right" id="likes">
+            <div class="modal-dialog bg-danger">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title"> people have liked your profile!</h2>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <p> liked your profile!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Thanks</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="modal fade right" id="views">
+                <div class="modal-dialog bg-danger">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title"> people have viewed your profile!</h2>
+                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <p> viewed your profile!</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Thanks</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</main>
+<footer>
+    <%- include('./default/footer'); -%>
+</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
